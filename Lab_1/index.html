@@ -1,94 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 1</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Lab1</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
-
 
 <body>
     <header>
-        <h1>lab 1</h1>
+        <h1 id="titulo">Lab1/Preguntas</h1>
+        <h2>A01710367</h2>
     </header>
 
     <nav>
-        <ul>
-            <li><a href="mi_pagina.html" >Pagina Personal</a></li>
+        <ul style="color: blueviolet;">
+            <li><a target="_blank" href="blog.html" >Pagina Personal</a></li>
         </ul>
     </nav>
 
-    <article id="lab1">
-        <h2>Lab 1: Preguntas</h2>
-        <table border="1">
-            <tr>
-                <th>Pregunta</th>
-                <th>Respuesta</th>
-            </tr>
+    <hr>
 
-            <tr>
-                <td>¿Cuál es la diferencia entre Internet y la World Wide Web?</td>
-                <td>Internet es una red global de computadoras interconectadas que permite la comunicación y el intercambio de datos entre ellas. La World Wide Web, por otro lado, es un servicio que se ejecuta en la parte superior de Internet y permite acceder y visualizar información a través de páginas web utilizando navegadores web.</td>
-            </tr>
-            <tr>
-                <td>¿Cuáles son las partes de un URL?</td>
-                <td>Dominio: la dirección del servidor donde se encuentra el recurso.
-                    Ruta: la ubicación específica del recurso en el servidor.
-                    Parámetros: datos opcionales que se pueden pasar al servidor.
-                    Fragmento: una parte específica del recurso al que se desea acceder.</td>
-            </tr>
-            <tr>
-                <td>¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?.</td>
-                <td>GET: solicita datos del servidor. HEAD: solicita encabezados del recurso sin obtener el cuerpo del mensaje. POST: envía datos al servidor para ser procesados. PUT: envía datos al servidor para que sean almacenados en una ubicación específica. PATCH: modifica parcialmente un recurso.DELETE: elimina un recurso del servidor.</td>
-            <tr>
-                <td>¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?.</td>
-                <td>-Se debe utilizar el método POST. Esto se debe a que el método POST envía los datos del formulario en el cuerpo de la solicitud HTTP, lo que es más seguro y adecuado para el envío de datos sensibles como contraseñas</td>
-            </tr>
-            <tr>
-                <td>¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</td>
-                <td>Normalmente se utiliza el método GET al acceder a una página a través de un URL. Este método solicita y recupera recursos del servidor.</td>
-            </tr>
-            <tr>
-                <td>¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</td>
-                <td>Sí, es responsabilidad del desarrollador corregir un error 404, ya que indica que el recurso solicitado no se encuentra en el servidor.Esto puede afectar negativamente la experiencia del usuario y la funcionalidad del sitio.</td>
-            </tr>
-            <tr>
-                <td>¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</td>
-                <td>-Sí, es responsabilidad del desarrollador corregir un error 500, ya que indica un error interno del servidor que impide que se procese la solicitud correctamente</td>
-            </tr>
-            <tr>
-                <td>¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</td>
-                <td>Un atributo HTML5 depreciado significa que se desaconseja su uso y puede ser eliminado en futuras versiones. Algunos elementos de HTML 4 desaprobados en HTML5 incluyen font, center, strike, entre otros.</td>
-            </tr>
-            <tr>
-                <td>¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</td>
-                <td>HTML5 introduce nuevas etiquetas semánticas como header, footer, nav, etc.
-                    Soporte mejorado para audio y video.
-                    Mayor capacidad para almacenar datos localmente.
-                    Nuevas API para aplicaciones web más interactivas.</td>
-            </tr>
-            <tr>
-                <td>¿Qué componentes de estructura y estilo tiene una tabla?</td>
-                <td>Estructura: table, tr (fila), td (celda), th (encabezado de celda).
-                    Estilo: se pueden aplicar estilos CSS para modificar el aspecto de la tabla, como el color de fondo, el tamaño de la fuente, el borde, etc
-                    </td>
-            </tr>
-            <tr>
-                <td>¿Cuáles son los principales controles de una forma HTML5?</td>
-                <td>input: para ingresar datos.
-                    select: para seleccionar una opción de una lista desplegable.
-                    textarea: para ingresar texto multilínea.
-                    button: para enviar el formulario o realizar alguna acción específica.
-                    checkbox y radio: para seleccionar opciones múltiples o únicas, respectivamente.
-                    </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-    </article>
+    <section>
+        <article class="tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Respuesta</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <tr>
+                       <td>¿Cuál es la diferencia entre Internet y la World Wide Web?</td>
+                        <td>En que el internet es el que permite la comunicacion e intercambio de informacion y la World Wide Web es el sistema que funciona a traves del internet mismo para acceder y viusalizar informacion a traves de los navegadores web</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>¿Cuáles son las partes de un URL?</td>
+                        <td>Protocolo(Metodo de acceso HTTP, HTTPS), Subdominio (subdivision del dominio principal como www), Dominio (Direccion del servidor donde se encuentra un recurso), TLD (extension de la ruta como .com u .org), Ruta(Ubicacion especifica del recurso en el server como /file.html), Parametros y fragmento (Variables que pasan al recurso y pueden modificar el comportamiento, e indican una ubicacion especifica en el recurso)</td>
+                    </tr> 
+        
+                    <tr>
+                        <td>¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PATCH, PUT, DELETE?.</td>
+                        <td>Para poder utilizar recursos e informacion que se encuentre en un servidor, basicamente el hacer una accion en internet, (GET: para solicitar datos al server), (HEAD:Solicita encabezados sin obtener el body), (POST:envia datos al server) (PUT: envia los datos al server para guardar en una ruta especifica), (PATCH: Modifica de forma parcial un recurso), (DELETE: elimina el recurso encontrado en el server)</td>
+                    </tr> 
+        
+                    <tr>
+                        <td>¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?.</td>
+                        <td>POST,porque envía datos de forma oculta sin embargo no de forma cifrada, permite un envio mayor de datos que GET</td>
+                    </tr> 
+        
+                    <tr>
+                        <td>¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</td>
+                        <td>Metodo GET, esto porque no modifica el estado del server, y se usa para recuperar los recursos del servidor </td>
+                    </tr> 
+        
+                    <tr>
+                        <td>Un servidor web devuelve una respuesta HTTP con código 200. ¿Qué significa esto? ¿Ocurrió algún error?</td>
+                        <td> En que la solicitud del cliente se ha procesado correctamente y el servidor ha devuelto el contenido solicitado. (No ha habido ningún error)</td>                
+                    </tr>
+                    
+                    <tr>
+                        <td>¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</td>
+                        <td>Si, se busca generalmente que se investiguen y corrijan los errores 404 que se reporten, aunque depende mucho del caso especifico</td>                
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        </article>
+
+        <section>
+            <aside>
+                <img src="https://edukedar.com/wp-content/uploads/2021/09/what-is-Hypertext-Transfer-Protocol-HTTP-1536x864.jpg" wide="200" height="150">
+            </aside>
+            <br>
+        </section>
+        
+            
+        <article class="tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Respuesta</th>
+                    </tr>
+                </thead>
+
+                <tbody>      
+                    <tr>
+                        <td>¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</td>
+                        <td>Si, porque el error 500 siginifica que existe un error interno del server, asi que probablemente hay un error en el código o la configuracion del sitio web</td>                
+                    </tr>
+        
+                    <tr>
+                        <td>¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</td>
+                        <td>Significa que ya no se recomienda su uso, esto es porque ya tiene mucho tiempo y no tiene soporte, existen mejores alternativas o dificulta el mantenimineto del codigo, algunos ejemplos son applet, acronym, big, center, dir y isindex</td>                
+                    </tr>
+        
+                    <tr>
+                        <td>¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</td>
+                        <td>Contiene nuevas caracteristicas como elementos semanticos, almacenamiento local, nuevas APIS, un mejor rendimiento entre muchas otras mejoras </td>                
+                    </tr>
+        
+                    <tr>
+                        <td>¿Qué componentes de estructura y estilo tiene una tabla?</td>
+                        <td>thead: Celdas del encabezado, tbody: celdas del cuerpo de la tabla, tfoot:celdas del pie de la celda, th: definir celda del encabezado, td: define celda de datos regular </td>                
+                    </tr>
+        
+                    <tr>
+                        <td>¿Cuáles son los principales controles de una forma HTML5?</td>
+                        <td>Input:, Select:, Textarea:, Button: ,  Checkbox/Radio:</td>                
+                    </tr>
+        
+                    <tr>
+                        <td>¿Qué tanto soporte HTML5 tiene el navegador que utilizas?</td>
+                        <td>Es excelente, pues tiene un excelente soporte de este mismo, uso Microsoft Edge</td>                
+                    </tr>
+        
+                    <tr>
+                        <td>Sobre el ciclo de vida y desarrollo de los sistemas de información:
+                            ¿Cuál es el ciclo de vida de los sistemas de información?
+                            ¿Cuál es el ciclo de desarrollo de sistemas de información?
+                        </td>
+                        <td>
+                            Ciclo de vida de los sistemas de información:
+                            Este describe etapas por las que pasa desde el concepto hasta su eliminación.
+                            <ol>
+                                <li>Planificación: Se define la necesidad estableciendo objetivos y se realiza un estudio de factibilidad.</li>
+                                <li>Análisis: Se analiza una situación para definir los requisitos.</li>
+                                <li>Diseño: Se realiza la interfaz de usuario y las bases de datos.</li>
+                                <li>Desarrollo: Se implementa la codificación, pruebas y depuración.</li>
+                                <li>Implementación: Se instala el sistema y se capacita a los usuarios.</li>
+                                <li>Operación y mantenimiento: Se monitorea una alpha, se realizan correcciones de errores y se actualiza según sea necesario.</li>
+                                <li>Descontinuación: Se apaga el sistema cuando ya no cumple con las necesidades del cliente.</li>
+                            </ol>
+                        </td>                                    
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+
+    </section>
+    <br>
+
+    <section>
+        <aside>
+            <img src="https://imgix.ranker.com/user_node_img/50018/1000359970/original/what-are-we-photo-u1?w=650&q=50&fm=pjpg&fit=crop&crop=faces" height="350">
+        </aside>
+
+    </section>
+
+    <hr>
+
+
+    <footer>
+        <a href="#titulo">Volver al Inicio</a>
+        <a href="mailto:01710367@tec.mxa">Contactame aquí</a>
+    
+    </footer>
+    
+
 </body>
 </html>
