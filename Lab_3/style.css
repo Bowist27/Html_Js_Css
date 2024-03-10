@@ -1,0 +1,64 @@
+#titulo{
+    color: rgb(0, 168, 168);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tabla {
+    color: brown;
+}
+
+
+.NuevaTabla {
+    color: green;
+}
+
+/* Comentarios */
+
+/* Hexagecimal
+.color  {
+    color: #ff0000;
+}
+
+
+.color  {
+    color: rgb(15, 39, 223)
+}
+
+
+
+
+
+*/
+
+.NuevaTabla  {
+    /* border: 5px red outset;
+    
+    dotted
+    dashed
+    solid
+    double
+    groove
+    ridge
+    inset
+     */
+
+    border-style: solid;
+    border-color: tomato;
+    border-radius: 5px;
+    border-width: 5px;
+
+}
+
+
+#fondo  {
+    background-color: rgb(255, 255, 255);
+    height: 400px;
+    background-image: url(https://th.bing.com/th/id/OIP.k5AnhqasGlDwX1xXR5oW9QHaEK?rs=1&pid=ImgDetMain);
+    background-size: contain ;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+
+
+
