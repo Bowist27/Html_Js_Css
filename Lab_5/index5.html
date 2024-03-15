@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab4/Javascript</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">  
+
+</head>
+
+
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="https://1000logos.net/wp-content/uploads/2022/09/Valorant-Emblem.png" width="100">
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+
+            <a class="navbar-item">
+              Documentation
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                More
+              </a>
+
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Jobs
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
+    <header>
+        <div class="title is-4">Lab4/Javascript</div>
+        <div class= "matricula is-3">A01710367</div>
+    </header>
+    
+    <section>
+        <h2>Javascript parte</h2>
+        <script src="lab4.js"></script>
+    </section>
+    
+
+
+    
+    <section>
+        <article>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Respuesta</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>¿Qué diferencias y semejanzas hay entre Java y JavaScript?</td>
+                        <td>Java es orientado a objetos de forma pura, JS esta basado en prototipos pudiendo emular poo, java es compilado mientras que js es interpretado ademas es por el navegador web, tambien el tipado es distinto ya que en java es estatico y en js es dinamico</td>
+                    </tr>
+
+                    <tr>
+                        <td>¿Qué métodos tiene el objeto Date? (Menciona al menos 5*)</td>
+                        <td>
+                            Tiene muchos métodos, con estos podemos obtener informacion y manipular la fecha, ejemplos: 
+                            <ol>
+                                <li>getDate(): Obtiene el día del mes (1-31).</li>
+                                <li>getMonth(): Obtiene el número del mes (0-11).</li>
+                                <li>getFullYear(): Obtiene el año completo (4 dígitos).</li>
+                                <li>getHours(): Obtiene la hora (0-23).</li>
+                                <li>getMinutes(): Obtiene los minutos (0-59).</li>
+                            </ol>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>¿Qué métodos tienen los arreglos? (Menciona al menos 5*)</td>
+                        <td>
+                            Los arreglos tienen muchos métodos, con estos podemos acceder a sus elementos, así como manipular la fecha, ejemplos: 
+                            <ol>
+                                <li>push(): Agrega uno o más elementos al final del arreglo.</li>
+                                <li>pop(): Elimina el último elemento del arreglo y lo devuelve.</li>
+                                <li>unshift(): Agrega uno o más elementos al principio del arreglo.</li>
+                                <li>length: Obtiene la longitud del arreglo (el número de elementos que contiene).</li>
+                                <li>forEach(): Ejecuta una función para cada elemento del arreglo.</li>
+                            </ol>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>¿Cómo se declara una variable con alcance local dentro de una función?</td>
+                        <td>Existen 2 formas de crearlas, let permitira modificarla despues, una const no siempre y cuando esten dentro de la misma funcion</td>
+                    </tr>
+
+                    <tr>
+                        <td>¿Qué implicaciones tiene utilizar variables globales dentro de funciones?</td>
+                        <td>Esto lleva a 2 problemas y/o complicaciones especialmente en la seguridad de este, al poder cualquier funcion modificarlas</td>
+                    </tr>
+
+                    <tr>
+                        <td>Describe material design</td>
+                        <td>Aquel recurso e implementacion que use el lenguaje de estilos CSS, se puede usar un framework como el usado en este laboratorio</td>
+                    </tr>
+
+                </tbody>
+
+
+
+            </table>
+        </article>
+    </section>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+</body>
+
+
+
+</html>
+

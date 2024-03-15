@@ -1,0 +1,13 @@
+#titulo {
+    color: rgb(0, 168, 168);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+
+
+
