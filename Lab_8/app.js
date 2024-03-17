@@ -18,49 +18,37 @@ const EscribirArchivo = (Titulo,Texto) =>{
     filesystem.writeFileSync(Titulo,Texto);
 }
 
-// Una función que reciba un string y escriba el string en un archivo de texto.
+// Una función que reciba un string y escriba el string en un archivo de texto. USO DE FS
 const textoEscribir = "Hola Mundo";
 EscribirArchivo (textoEscribir,"archivo.txt")
 
-class MinStack {
-    constructor() {
-        this.arr = [];
-        this.minArr = [];
-    }
+function isValidParentheses(s) {
+    const stack = [];
+    const pairs = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
 
-    push(val) {
-        this.arr.push(val);
-        if (this.minArr.length === 0) {
-            this.minArr.push(val);
+    for (let char of s) {
+        if (char in pairs) {
+            if (stack.pop() !== pairs[char]) {
+                return false;
+            }
         } else {
-            const minVal = Math.min(val, this.getMin());
-            this.minArr.push(minVal);
+            stack.push(char);
         }
     }
 
-    pop() {
-        this.arr.pop();
-        this.minArr.pop();
-    }
-
-    top() {
-        return this.arr[this.arr.length - 1];
-    }
-
-    getMin() {
-        return this.minArr[this.minArr.length - 1];
-    }
+    return stack.length === 0;
 }
 
-// Ejemplo de uso:
-const minStack = new MinStack();
-minStack.push(3);
-minStack.push(5);
-minStack.push(2);
-console.log("Minimum value:", minStack.getMin()); // Output: 2
-minStack.pop();
-console.log("Top value:", minStack.top()); // Output: 5
-console.log("Minimum value:", minStack.getMin()); // Output: 3
+// Ejemplos de uso:
+console.log(isValidParentheses("()")); // Output: true
+console.log(isValidParentheses("()[]{}")); // Output: true
+console.log(isValidParentheses("(]")); // Output: false
+console.log(isValidParentheses("([)]")); // Output: false
+console.log(isValidParentheses("{[]}")); // Output: true
 
 const http = require ("http");
 const server = http.createServer((request, response) => {
