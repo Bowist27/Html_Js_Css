@@ -107,24 +107,7 @@ const tropas = [
 ];
   
 router.get('/crear', (request, response, next) => {
-    let html = html_header;
-    html += `
-      <h2 class="title">Crear una nueva clase</h2>
-        <form action="/crear" method="POST">
-          <label class="label" for="clase">Clase</label>
-          <input class="input text" id="clase" name="clase">
-          <label class="label" for="vida">Vida</label>
-          <input type="number" value="10" class="input text" id="vida" name="vida">
-          <label class="label" for="ataque">Ataque</label>
-          <input type="number" value="10" class="input text" id="ataque" name="ataque">
-          <label class="label" for="imagen">Imagen</label>
-          <input class="input text" id="imagen" name="imagen">
-          <br><br>
-          <input class="button is-success" type="submit" value="Crear">
-        </form>
-      `;
-    html += html_footer;
-    response.send(html);
+  response.render('crear');
 });
   
 router.post('/crear', (request, response, next) => {
