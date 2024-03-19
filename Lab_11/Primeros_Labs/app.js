@@ -110,6 +110,10 @@ const tropas = [
 const express = require('express');
 const app = express();
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: false}));
+
 //Middleware
 app.use((request, response, next) => {
   console.log('Middleware!');
@@ -135,6 +139,18 @@ app.get('/crear', (request, response, next) => {
     `;
   html += html_footer;
   response.send(html);
+});
+
+app.post('/crear', (request, response, next) => {
+  console.log(request.body);
+  tropas.push({
+    clase: request.body.clase, 
+    nivel: 1, 
+    vida: request.body.vida, 
+    ataque: request.body.ataque, 
+    imagen: request.body.imagen,
+  });
+  response.redirect('/');
 });
 
 app.get('/', (request, response, next) => {
@@ -189,46 +205,4 @@ app.use((request, response, next) => {
   response.send(html); //Manda la respuesta
 });
 
-
-/*
-const server = http.createServer( (request, response) => {    
-    
-    if (request.url == "/") {
-
-
-      
-    } else if (request.url == "/crear" && request.method == "POST") {
-      const datos = [];
-      request.on('data', (dato) => {
-          console.log(dato);
-          datos.push(dato);
-      });
-      return request.on('end', () => {
-          const datos_completos = Buffer.concat(datos).toString();
-          console.log(datos_completos);
-          const clase = datos_completos.split('&')[0].split('=')[1];
-          console.log(clase);
-          const vida = datos_completos.split('&')[1].split('=')[1];
-          console.log(vida);
-          const ataque = datos_completos.split('&')[2].split('=')[1];
-          console.log(ataque);
-          const imagen = datos_completos.split('&')[3].split('=')[1];
-          console.log(imagen);
-          tropas.push({
-            clase: clase, 
-            nivel: 1, 
-            vida: vida, 
-            ataque: ataque, 
-            imagen: imagen,
-          });
-          filesystem.writeFileSync(response);
-          return response.end();
-      });
-    }
-
-
-
-});
-
-*/
 app.listen(3000);
