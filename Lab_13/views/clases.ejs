@@ -1,0 +1,37 @@
+<%- include('includes/head.ejs') %>
+<h2 class="title">Hola jugador de Valorant!</h2>
+<div class="columns">
+    
+<% for (let tropa of tropas) { %>
+      
+    <div class="column">
+        <div class="card">
+            <div class="card-image">
+            <figure class="image is-4by3">
+                <img id="imagen_jett" src="<%= tropa.imagen %>" alt="Imagen de <%= tropa.clase %>">
+            </figure>
+            </div>
+            <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                <figure class="image is-48x48">
+                    <img src="<%= tropa.imagen %>" alt="Imagen de <%= tropa.clase %>">
+                </figure>
+                </div>
+                <div class="media-content">
+                <p class="title is-4"><%= tropa.clase %></p>
+                <p class="subtitle is-6">@<%= tropa.clase %> Lvl: <span id="nivel_jett"><%= tropa.nivel %></span></p>
+                </div>
+            </div>
+        
+            <div class="content">
+                Vida: <span id="vida_jett"><%= tropa.vida %></span> <br>
+                Ataque: <span id="ataque_jett"><%= tropa.ataque %></span> <br> <br>
+                <button id="boton_atacar_killjoy" class="button is-danger">Atacar killjoy</button> <br> <br>
+                <button id="boton_levelear_jett" class="button is-success">Subir de nivel</button>
+            </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+<%- include('includes/foot.ejs') %>
