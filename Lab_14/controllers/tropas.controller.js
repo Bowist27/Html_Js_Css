@@ -11,12 +11,15 @@ exports.post_crear = (request, response, next) => {
         request.body.imagen
     );
     mi_tropa.save(); 
-    response.setHeader('Set-Cookie', 'ultima_tropa=' + mi_tropa.clase);
+    response.setHeader('Set-Cookie', 'ultima_tropa=' + mi_tropa.clase + '; HttpOnly');
     response.redirect('/');
 };
 
 exports.get_root = (request, response, next) => {
+    console.log(request.cookies);
+    console.log(request.cookies.ultima_tropa);
     response.render('clases', {
         tropas: Tropa.fetchAll(),
+        ultima_tropa: request.cookies.ultima_tropa || '',
     });
 };
