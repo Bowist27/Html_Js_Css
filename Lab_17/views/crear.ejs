@@ -1,0 +1,15 @@
+<%- include('includes/head.ejs', {username: username}) %>
+<h2 class="title">Crear una nueva clase</h2>
+<form action="/tropas/crear" method="POST"></form>
+    <label class="label" for="clase">Clase</label>
+    <input class="input text" id="clase" name="clase">
+    <label class="label" for="vida">Vida</label>
+    <input type="number" value="0" class="input text" id="vida" name="vida">
+    <label class="label" for="ataque">Ataque</label>
+    <input type="number" value="10" class="input text" id="ataque" name="ataque">
+    <label class="label" for="imagen">Imagen</label>
+    <input class="input text" id="imagen" name="imagen">
+    <br><br>
+    <input class="button is-success" type="submit" value="Crear">
+</form>
+<%- include('includes/foot.ejs') %>
