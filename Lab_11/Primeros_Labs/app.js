@@ -116,6 +116,50 @@ app.use((request, response, next) => {
   next(); //Le permite a la petición avanzar hacia el siguiente middleware
 });
 
+app.get('/', (request, response, next) => {
+  let html = html_header;
+  html += `
+    <h2 class="title">Hola jugador de Valorant!</h2>
+    <div class="columns">`;
+  
+  for (let tropa of tropas) {
+    html += `
+      <div class="column">
+        <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img id="imagen_jett" src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">${tropa.clase}</p>
+                  <p class="subtitle is-6">@${tropa.clase} Lvl: <span id="nivel_jett">${tropa.nivel}</span></p>
+                </div>
+              </div>
+          
+              <div class="content">
+                Vida: <span id="vida_jett">${tropa.vida}</span> <br>
+                Ataque: <span id="ataque_jett">${tropa.ataque}</span> <br> <br>
+                <button id="boton_atacar_killjoy" class="button is-danger">Atacar killjoy</button> <br> <br>
+                <button id="boton_levelear_jett" class="button is-success">Subir de nivel</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    `;
+  }
+  html += html_footer;
+  response.send(html);
+});
+
+
 app.use((request, response, next) => {
   response.status(404);
   let html = html_header;
@@ -127,130 +171,11 @@ app.use((request, response, next) => {
 
 /*
 const server = http.createServer( (request, response) => {    
-    console.log(request.url);
-
+    
     if (request.url == "/") {
 
-      response.setHeader('Content-Type', 'text/html');
-      response.write(html_header);
-      response.write(`
-                      <h2 class="title">Hola Jugador de Valorant!</h2>
-                      <div class="columns">`
-      );
 
-      let html_tropas = '';
-      for (let tropa of tropas) {
-          html_tropas += `
-            <div class="column">
-              <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img id="imagen_jett" src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <div class="media">
-                      <div class="media-left">
-                        <figure class="image is-48x48">
-                          <img src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
-                        </figure>
-                      </div>
-                      <div class="media-content">
-                        <p class="title is-4">${tropa.clase}</p>
-                        <p class="subtitle is-6">@${tropa.clase} Lvl: <span id="nivel_jett">${tropa.nivel}</span></p>
-                      </div>
-                    </div>
-                
-                    <div class="content">
-                      Vida: <span id="vida_jett">${tropa.vida}</span> <br>
-                      Ataque: <span id="ataque_jett">${tropa.ataque}</span> <br> <br>
-                      <button id="boton_atacar_killjoy" class="button is-danger">Atacar killjoy</button> <br> <br>
-                      <button id="boton_levelear_jett" class="button is-success">Subir de nivel</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          `;
-      }
-      response.write(html_tropas);
-      response.write(`</div>
-              <script>
-              const jett = {nivel: 1, vida: 100, ataque: 30};
-              const killjoy = {nivel: 1, vida: 100, ataque: 30};
-              
-              const boton_levelear_jett = document.getElementById("boton_levelear_jett");
-              
-              const subir_jett = () => {
-                  jett.nivel++;
-                  jett.vida += 0;
-                  jett.ataque += 10;
-              }
-              
-              boton_levelear_jett.onclick = () => {
-                  subir_jett();
-                  const span_nivel = document.getElementById("nivel_jett");
-                  span_nivel.innerHTML = jett.nivel;
-                  const span_ataque = document.getElementById("ataque_jett");
-                  span_ataque.innerHTML = jett.ataque;
-                  const span_vida = document.getElementById("vida_jett");
-                  span_vida.innerHTML = jett.vida;
-              }
-              
-              const boton_atacar_killjoy = document.getElementById("boton_atacar_killjoy");
-              
-              boton_atacar_killjoy.onclick = () => {
-                  killjoy.vida -= jett.ataque;
-                  
-                  if (killjoy.vida <= 0) {
-                      const imagen_killjoy = document.getElementById("imagen_killjoy");
-                      imagen_killjoy.src = "https://pbs.twimg.com/media/FGqnaSAWYAM-P__.jpg";
-                      const boton_levelear_killjoy = document.getElementById("boton_levelear_killjoy");
-                      boton_levelear_killjoy.style.display = "none";
-                      const boton_atacar_jett = document.getElementById("boton_atacar_jett");
-                      boton_atacar_jett.style.display = "none";
-                  }
-              
-                  const span_vida = document.getElementById("vida_killjoy");
-                  span_vida.innerHTML = killjoy.vida;
-              }
-              
-              const subir_killjoy = () => {
-                  killjoy.nivel++;
-                  killjoy.vida += 2;
-                  killjoy.ataque += 4;
-              }
-              
-              boton_levelear_killjoy.onclick = () => {
-                  subir_killjoy();
-                  const span_nivel = document.getElementById("nivel_killjoy");
-                  span_nivel.innerHTML = killjoy.nivel;
-                  const span_ataque = document.getElementById("ataque_killjoy");
-                  span_ataque.innerHTML = killjoy.ataque;
-                  const span_vida = document.getElementById("vida_killjoy");
-                  span_vida.innerHTML = killjoy.vida;
-              }
-              
-              const boton_atacar_jett = document.getElementById("boton_atacar_jett");
-              
-              boton_atacar_jett.onclick = () => {
-                  jett.vida -= killjoy.ataque;
-                  
-                  if (jett.vida <= 0) {
-                      const imagen_jett = document.getElementById("imagen_jett");
-                      imagen_jett.src = "https://p.turbosquid.com/ts-thumb/Vw/S5IUL1/9XyEOpwn/barbarian/png/1548506480/1920x1080/fit_q99/213fe431655c56a984598422f62ed769f31ed4fa/barbarian.jpg";
-                      const boton_levelear_jett = document.getElementById("boton_levelear_jett");
-                      boton_levelear_jett.style.display = "none";
-                      const boton_atacar_killjoy = document.getElementById("boton_atacar_killjoy");
-                      boton_atacar_killjoy.style.display = "none";
-                  }
-              
-                  const span_vida = document.getElementById("vida_jett");
-                  span_vida.innerHTML = jett.vida;
-              }
-              </script>
-      `);
-      response.write(html_footer);
-      response.end();
+      
     } else if (request.url == "/crear" && request.method == "POST") {
       const datos = [];
       request.on('data', (dato) => {
