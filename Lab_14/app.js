@@ -16,6 +16,10 @@ app.use((request, response, next) => {
   next(); //Le permite a la petición avanzar hacia el siguiente middleware
 });
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+
 const rutasClases = require('./routes/clases.routes');
 app.use('/', rutasClases);
 
