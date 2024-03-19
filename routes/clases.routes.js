@@ -1,18 +1,19 @@
-
+const express = require('express');
+const router = express.Router();
 const html_header = `
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Valorant</title>
+        <title>Clash of clans</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     </head>
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
               <a class="navbar-item" href="/">
-              <img src="https://1000logos.net/wp-content/uploads/2022/09/Valorant-Emblem.png" width="112" height="28">
+                <img src="https://1000logos.net/wp-content/uploads/2022/09/Valorant-Emblem.png" width="112" height="28">
               </a>
           
               <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -69,11 +70,9 @@ const html_header = `
               </div>
             </div>
           </nav>
-
         <section class="section">
             <div class="container">
 `;
-
 const html_footer = `
     </div>
     </section>
@@ -106,103 +105,87 @@ const tropas = [
     imagen: "https://i.pinimg.com/originals/3b/5c/30/3b5c307c5f3b9bf12f89bf9b29f7eff0.jpg",
   }
 ];
-
-const express = require('express');
-const app = express();
-
-const bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({extended: false}));
-
-//Middleware
-app.use((request, response, next) => {
-  console.log('Middleware!');
-  next(); //Le permite a la petición avanzar hacia el siguiente middleware
-});
-
-app.get('/crear', (request, response, next) => {
-  let html = html_header;
-  html += `
-    <h2 class="title">Crear una nueva clase</h2>
-      <form action="/crear" method="POST">
-        <label class="label" for="clase">Clase</label>
-        <input class="input text" id="clase" name="clase">
-        <label class="label" for="vida">Vida</label>
-        <input type="number" value="10" class="input text" id="vida" name="vida">
-        <label class="label" for="ataque">Ataque</label>
-        <input type="number" value="10" class="input text" id="ataque" name="ataque">
-        <label class="label" for="imagen">Imagen</label>
-        <input class="input text" id="imagen" name="imagen">
-        <br><br>
-        <input class="button is-success" type="submit" value="Crear">
-      </form>
-    `;
-  html += html_footer;
-  response.send(html);
-});
-
-app.post('/crear', (request, response, next) => {
-  console.log(request.body);
-  tropas.push({
-    clase: request.body.clase, 
-    nivel: 1, 
-    vida: request.body.vida, 
-    ataque: request.body.ataque, 
-    imagen: request.body.imagen,
-  });
-  response.redirect('/');
-});
-
-app.get('/', (request, response, next) => {
-  let html = html_header;
-  html += `
-    <h2 class="title">Hola jugador de Valorant!</h2>
-    <div class="columns">`;
   
-  for (let tropa of tropas) {
+router.get('/crear', (request, response, next) => {
+    let html = html_header;
     html += `
-      <div class="column">
-        <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img id="imagen_jett" src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
-                  </figure>
+      <h2 class="title">Crear una nueva clase</h2>
+        <form action="/crear" method="POST">
+          <label class="label" for="clase">Clase</label>
+          <input class="input text" id="clase" name="clase">
+          <label class="label" for="vida">Vida</label>
+          <input type="number" value="10" class="input text" id="vida" name="vida">
+          <label class="label" for="ataque">Ataque</label>
+          <input type="number" value="10" class="input text" id="ataque" name="ataque">
+          <label class="label" for="imagen">Imagen</label>
+          <input class="input text" id="imagen" name="imagen">
+          <br><br>
+          <input class="button is-success" type="submit" value="Crear">
+        </form>
+      `;
+    html += html_footer;
+    response.send(html);
+});
+  
+router.post('/crear', (request, response, next) => {
+    console.log(request.body);
+    tropas.push({
+      clase: request.body.clase, 
+      nivel: 1, 
+      vida: request.body.vida, 
+      ataque: request.body.ataque, 
+      imagen: request.body.imagen,
+    });
+    response.redirect('/');
+});
+  
+router.get('/', (request, response, next) => {
+    let html = html_header;
+    html += `
+        <h2 class="title">Hola jugador de Valorant!</h2>
+        <div class="columns">`;
+    
+    for (let tropa of tropas) {
+      html += `
+        <div class="column">
+          <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img id="imagen_jett" src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img src="${tropa.imagen}" alt="Imagen de ${tropa.clase}">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4">${tropa.clase}</p>
+                    <p class="subtitle is-6">@${tropa.clase} Lvl: <span id="nivel_jett">${tropa.nivel}</span></p>
+                  </div>
                 </div>
-                <div class="media-content">
-                  <p class="title is-4">${tropa.clase}</p>
-                  <p class="subtitle is-6">@${tropa.clase} Lvl: <span id="nivel_jett">${tropa.nivel}</span></p>
+            
+                <div class="content">
+                  Vida: <span id="vida_jett">${tropa.vida}</span> <br>
+                  Ataque: <span id="ataque_jett">${tropa.ataque}</span> <br> <br>
+                  <button id="boton_atacar_killjoy" class="button is-danger">Atacar killjoy</button> <br> <br>
+                  <button id="boton_levelear_jett" class="button is-success">Subir de nivel</button>
                 </div>
               </div>
-          
-              <div class="content">
-                Vida: <span id="vida_jett">${tropa.vida}</span> <br>
-                Ataque: <span id="ataque_jett">${tropa.ataque}</span> <br> <br>
-                <button id="boton_atacar_killjoy" class="button is-danger">Atacar killjoy</button> <br> <br>
-                <button id="boton_levelear_jett" class="button is-success">Subir de nivel</button>
-              </div>
             </div>
-          </div>
-      </div>
-    `;
-  }
-  html += html_footer;
-  response.send(html);
+        </div>
+      `;
+    }
+    html += html_footer;
+    response.send(html);
 });
-
-
-app.use((request, response, next) => {
-  response.status(404);
-  let html = html_header;
-  html += '<h2 class="title">Este personaje ya no existe... ñññññ</h2>';
-  html += html_footer;
-  response.send(html); //Manda la respuesta
+router.use((request, response, next) => {
+    response.status(404);
+    let html = html_header;
+    html += '<h2 class="title">Este personaje ya no existe... ñññññ</h2>';
+    html += html_footer;
+    response.send(html); //Manda la respuesta
 });
-
-app.listen(3000);
+module.exports = router;
