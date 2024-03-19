@@ -285,27 +285,33 @@ const server = http.createServer( (request, response) => {
       `);
       response.write(html_footer);
       response.end();
-    } else if (request.url == "/crear") {
-      
-      response.setHeader('Content-Type', 'text/html');
-      response.write(html_header);
-      response.write(`<h2 class="title">Crear una nueva clase</h2>`);
-      response.write(`
-        <form action="/crear" method="POST">
-          <label class="label" for="clase">Clase</label>
-          <input class="input text" id="clase" name="clase">
-          <label class="label" for="vida">Vida</label>
-          <input type="number" value="10" class="input text" id="vida" name="vida">
-          <label class="label" for="ataque">Ataque</label>
-          <input type="number" value="10" class="input text" id="ataque" name="ataque">
-          <label class="label" for="imagen">Imagen</label>
-          <input class="input text" id="imagen" name="imagen">
-          <br><br>
-          <input class="button is-success" type="submit" value="Crear">
-        </form>
-      `);
-      response.write(html_footer);
-      response.end();
+    } else if (request.url == "/crear" && request.method == "POST") {
+      const datos = [];
+      request.on('data', (dato) => {
+          console.log(dato);
+          datos.push(dato);
+      });
+      return request.on('end', () => {
+          const datos_completos = Buffer.concat(datos).toString();
+          console.log(datos_completos);
+          const clase = datos_completos.split('&')[0].split('=')[1];
+          console.log(clase);
+          const vida = datos_completos.split('&')[1].split('=')[1];
+          console.log(vida);
+          const ataque = datos_completos.split('&')[2].split('=')[1];
+          console.log(ataque);
+          const imagen = datos_completos.split('&')[3].split('=')[1];
+          console.log(imagen);
+          tropas.push({
+            clase: clase, 
+            nivel: 1, 
+            vida: vida, 
+            ataque: ataque, 
+            imagen: imagen,
+          });
+          filesystem.writeFileSync(response);
+          return response.end();
+      });
     } else {
 
       response.statusCode = 404;
@@ -319,23 +325,6 @@ const server = http.createServer( (request, response) => {
 
 
 });
-
-
-    /*
-    const datos = [];
-
-    request.on('data', (dato) => {
-        console.log(dato);
-        datos.push(dato);
-    });
-
-    return request.on('end', () => {
-        const datos_completos = Buffer.concat(datos).toString();
-        console.log(datos_completos);
-        const nuevo_dato = datos_completos.split('=')[1];
-        return response.end();
-    });
-    */
 
 
 server.listen(3000);
