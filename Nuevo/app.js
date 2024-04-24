@@ -72,8 +72,7 @@ const html_header = `
                     </div>
                 </div>
             </nav>
-    `;
-
+`;
 
 const html_footer = `
     <footer class="footer">
@@ -110,19 +109,19 @@ const plataformas = [
     {
         nombre: "Netflix ",
         imagen: "https://th.bing.com/th/id/OIP.olf7URQhTf1dmf564nc1_QHaD4?w=1500&h=785&rs=1&pid=ImgDetMain",
-        votos: 0;
+        votos: 0,
         link: "https://www.netflix.com/mx-en/",
     },
     {
         nombre: "Amazon Prime Video",
         imagen: "https://th.bing.com/th/id/OIP.frhcgzKI2Bm-Qr4Wcc4YowHaEW?rs=1&pid=ImgDetMain",
-        votos: 0;
+        votos: 0,
         link: "https://www.primevideo.com/offers/nonprimehomepage/ref=dvm_pds_cpb_mx_dc_s_b_mkw_Fa7A4Bdc-dc?mrntrk=pcrid_77515746168256_slid__pgrid_1345802253479726_pgeo_144400_x__adext__ptid_kwd-84112650178895:loc-119",
     },
     {
         nombre: "HBO MAX",
         imagen: "https://th.bing.com/th/id/OIP.hSHdrZaZhTlVGaot5Z0mygHaF7?rs=1&pid=ImgDetMain",
-        votos: 0;
+        votos: 0,
         link: "https://www.max.com/mx/es",
     }
 ];
@@ -130,4 +129,18 @@ const plataformas = [
 const express = require('express');
 const app = express();
 
+// Middleware 
+app.use((request, response, next) => {
+    response.status(404);
+    let html = html_header;
+    html += '<h2 class="title">Shhhhh...</h2>';
+    html += html_footer;
+    response.send(html); //Manda la respuesta
+});
+
+  app.use((request, response, next) => {
+    console.log('Otro middleware!');
+    response.send('¡Hola mundo!'); //Manda la respuesta
+  });
+  
 app.listen(3000);
