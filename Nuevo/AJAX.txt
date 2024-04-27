@@ -1,0 +1,15 @@
+Ajax se hizo en el proyecto commit ()
+Realiza una solicitud AJAX para obtener datos del servidor, procesa esos datos cuando se reciben y actualiza dinámicamente un gráfico en la página web con los datos obtenidos.
+
+
+¿Qué importancia tiene AJAX en el desarrollo de RIA's (Rich Internet Applications)?
+AJAX es crucial en el desarrollo de RIAs porque permite la comunicación asíncrona entre el cliente y el servidor, lo que resulta en una experiencia de usuario más dinámica y rápida al actualizar partes específicas de una página sin recargarla por completo.
+
+¿Qué implicaciones de seguridad tiene AJAX?
+AJAX introduce consideraciones adicionales, como vulnerabilidades de CSRF si no se implementan correctamente medidas de seguridad. Es relevante por este motivo validar los datos en el lado del servidor y proteger con el HTTPS.
+
+¿Dónde se deben hacer las validaciones de seguridad, del lado del cliente o del lado del servidor?
+Ambas son relevantes aunque mas enfocarse en el area del servidor.
+
+¿Qué es JSON?
+JSON (JavaScript Object Notation) es un formato de intercambio de datos ligero y fácil de leer que se utiliza comúnmente en aplicaciones web y servicios web. Se utiliza ampliamente en la comunicación entre el cliente y el servidor en aplicaciones web AJAX debido a su simplicidad y su facilidad de interpretación tanto por humanos como por máquinas.
