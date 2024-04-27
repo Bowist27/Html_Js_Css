@@ -1,0 +1,105 @@
+SELECT * FROM desarrollo.entregan;
+
+1
+SELECT SUM(E.cantidad) AS 'Suma de cantidades', SUM(E.cantidad * (M.precio + M.impuesto)) AS 'Importe Total'
+FROM entregan AS E
+JOIN materiales AS M WHERE E.clave = M.clave
+AND E.fecha BETWEEN '1/1/97' AND '31/1/97';
+
+2
+SELECT PR.razonsocial AS 'Razón Social', SUM(E.cantidad * (M.precio + M.impuesto)) AS 'Importe Total'
+FROM proveedores AS PR
+JOIN entregan AS E ON PR.rfc = E.rfc
+JOIN materiales AS M ON E.clave = M.clave
+GROUP BY PR.rfc;
+
+3
+SELECT M.clave AS 'Clave',
+M.descripcion AS 'Descripción',
+SUM(E.cantidad) AS 'Cantidad total entregada', MIN(E.cantidad) AS 'Cantidad mínima entregada', MAX(E.cantidad) AS 'Cantidad máxima entregada', SUM(E.cantidad * (M.precio + M.impuesto)) AS 'Importe Total'
+FROM materiales AS M
+JOIN entregan AS E ON M.clave = E.clave
+GROUP BY M.clave
+HAVING AVG(E.cantidad)  > 400;
+
+4
+SELECT PR.razonsocial AS 'Razón Social',
+AVG(E.cantidad) AS 'Cantidad promedio entregada', M.clave AS 'Clave', M.descripcion AS 'Descripcion'
+FROM entregan AS E
+JOIN proveedores AS PR ON E.rfc = PR.rfc
+JOIN materiales AS M ON E.clave = M.clave
+GROUP BY PR.razonsocial, M.clave, M.descripcion 
+HAVING AVG(E.cantidad) < 500;
+
+5
+SELECT PR.razonsocial AS 'Razón Social',
+AVG(E.cantidad) AS 'Cantidad promedio entregada', M.clave AS 'Clave', M.descripcion AS 'Descripcion' 
+FROM entregan AS E
+JOIN proveedores AS PR ON E.rfc = PR.rfc
+JOIN materiales AS M ON E.clave = M.clave
+GROUP BY PR.rfc, M.clave, M.descripcion 
+HAVING AVG(E.cantidad) < 370
+OR AVG(E.cantidad) > 450;
+
+6
+INSERT INTO materiales VALUES (2010, 'Arcilla roja', 85, 7);
+INSERT INTO materiales VALUES(2020, 'Tornillo 8/4', 65, 5);
+INSERT INTO materiales VALUES(2021, 'Pintura Beige 1LT', 140, 11);
+INSERT INTO materiales VALUES(2022, 'Cuerda 3m', 110, 9);
+INSERT INTO materiales VALUES(2023, 'Alambre 3/8', 189, 16);
+
+7
+SELECT M.clave, M.descripcion
+FROM materiales AS M
+WHERE M.clave NOT IN (SELECT clave FROM entregan);
+
+8
+SELECT DISTINCT PR.razonsocial
+FROM proveedores AS PR
+JOIN entregan AS E ON PR.rfc = E.rfc
+JOIN proyectos AS P ON E.numero = P.numero
+WHERE denominacion = 'Vamos México'
+AND EXISTS (
+	SELECT DISTINCT PR.razonsocial
+	FROM proveedores AS PR
+	JOIN entregan AS E ON PR.rfc = E.rfc
+	JOIN proyectos AS P ON E.numero = P.numero
+    WHERE denominacion = 'Querétaro Limpio'
+);
+
+9
+SELECT M.descripcion AS 'Descripción'
+FROM materiales AS M
+WHERE M.clave NOT IN (
+	SELECT M.clave FROM materiales AS M
+    JOIN entregan AS E ON M.clave = E.clave
+    JOIN proyectos AS P ON E.numero = P.numero
+    WHERE P.denominacion = 'CIT Yucatán'
+);
+
+10
+SELECT PR.razonsocial AS 'Razón Social',
+AVG(E.cantidad) AS 'Promedio cantidad entregada'
+FROM proveedores AS PR 
+JOIN entregan AS E ON PR.rfc = E.rfc
+GROUP BY Pr.razonsocial
+HAVING AVG(E.cantidad) > (
+	SELECT AVG(E.cantidad) AS 'Promedio cantidad entregada'
+	FROM entregan AS E
+	JOIN proveedores AS PR ON E.rfc = PR.rfc
+    WHERE PR.rfc = 'AAAA800101'
+);
+
+11
+SELECT PR.rfc, PR.razonsocial 
+FROM proveedores AS PR
+JOIN entregan AS E ON PR.rfc = E.rfc
+JOIN proyectos AS P ON E.numero = P.numero
+WHERE P.denominacion = 'Infonavit Durango'
+GROUP BY PR.rfc, PR.razonsocial
+HAVING SUM(CASE WHEN E.fecha BETWEEN '2000-01-01' AND '2000-12-31' THEN E.cantidad ELSE 0 END) >
+       SUM(CASE WHEN E.fecha BETWEEN '2001-01-01' AND '2001-12-31' THEN E.cantidad ELSE 0 END);
+
+
+
+
